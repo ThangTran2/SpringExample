@@ -2,9 +2,14 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd"
 	default-init-method="init" default-destroy-method="destroy">
+
+	<context:annotation-config />
 
 	<!-- <bean id = "helloWorld" class = "com.tutorialspoint.HelloWorld" scope 
 		= "singleton"> </bean> -->
@@ -40,6 +45,49 @@
 		class="com.tutorialspoint.HelloIndia" parent="beanTeamplate"> <property name="message1" 
 		value="Hello India!" /> <property name="message3" value="Namaste India!" 
 		/> </bean> -->
+
+	<!-- Constructor-based Dependency Injection -->
+
+	<!-- <bean id="textEditor" class="com.tutorialspoint.TextEditor"> <constructor-arg 
+		ref="spellChecker" /> </bean> Definition for spellChecker bean <bean id="spellChecker" 
+		class="com.tutorialspoint.SpellChecker"></bean> -->
+
+
+	<!-- Definition for textEditor bean using inner bean -->
+	<!-- <bean id="textEditor" class="com.tutorialspoint.TextEditor"> <property 
+		name="spellChecker"> <bean id="spellChecker" class="com.tutorialspoint.SpellChecker"> 
+		<property name="message" value="Hello World!" /> </bean> </property> </bean> -->
+
+	<!-- Spring - Injecting Collection -->
+	<!-- Definition for javaCollection -->
+	<!-- <bean id="javaCollection" class="com.tutorialspoint.JavaCollection"> 
+		results in a setAddressList(java.util.List) call <property name="addressList"> 
+		<list> <value>INDIA</value> <value>Pakistan</value> <value>USA</value> <value>USA</value> 
+		</list> </property> results in a setAddressSet(java.util.Set) call <property 
+		name="addressSet"> <set> <value>INDIA</value> <value>Pakistan</value> <value>USA</value> 
+		<value>USA</value> </set> </property> results in a setAddressMap(java.util.Map) 
+		call <property name="addressMap"> <map> <entry key="1" value="INDIA" /> <entry 
+		key="2" value="Pakistan" /> <entry key="3" value="USA" /> <entry key="4" 
+		value="USA" /> </map> </property> results in a setAddressProp(java.util.Properties) 
+		call <property name="addressProp"> <props> <prop key="one">INDIA</prop> <prop 
+		key="one">INDIA</prop> <prop key="two">Pakistan</prop> <prop key="three">USA</prop> 
+		<prop key="four">USA</prop> </props> </property> </bean> -->
+
+	<!-- Event Handling in Spring -->
+<!-- <bean id="helloWorld" class="com.tutorialspoint.HelloWorld">
+		<property name="message" value="Hello World!" />
+	</bean>
+
+	<bean id="cStartEventHandler"
+		class="com.tutorialspoint.CStartEventHandler" />
+	<bean id="cStopEventHandler"
+		class="com.tutorialspoint.CStopEventHandler" /> -->
+
+	<!-- Custom Events in Spring -->
+	<bean id="customEventHandler"
+		class="com.tutorialspoint.CustomEventHandler" />
+	<bean id="customEventPublisher"
+		class="com.tutorialspoint.CustomEventPublisher" />
 
 
 </beans>
